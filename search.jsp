@@ -1,23 +1,70 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.Accio.SearchResult" %>
 <html>
+<head>
+    <title>Search Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #dddddd;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #ffffff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #dddddd;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
 <body>
-    <table border=2>
-        <tr>
-            <th>Title</th>
-            <th>Link</th>
-        </tr>
-        <%
-            ArrayList<SearchResult> results = (ArrayList<SearchResult>)request.getAttribute("results");
-            for(SearchResult result:results){
-        %>
-        <tr>
-            <td><%out.println(result.getTitle());%></td>
-            <td><a href="<%out.println(result.getLink());%>"><%out.println(result.getLink());%></a></td>
-        </tr>
-        <%
-            }
-        %>
-    </table>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Link</th>
+    </tr>
+    <%
+        ArrayList<SearchResult> results = (ArrayList<SearchResult>) request.getAttribute("results");
+        for (SearchResult result : results) {
+    %>
+    <tr>
+        <td><%= result.getTitle() %></td>
+        <td><a href="<%= result.getLink() %>"><%= result.getLink() %></a></td>
+    </tr>
+    <%
+        }
+    %>
+</table>
 </body>
 </html>
